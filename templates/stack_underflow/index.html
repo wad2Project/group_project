@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+{%extends 'stack_underflow/base.html' %}
+{%load staticfiles%}
+
+<html>
+    <head>
+        <title>StackUnderflow</title>
+    </head>
+
+    <body>
+        <h1>Heading</h1>
+        <div>
+            <strong>{{ boldmessage }}</strong><br />
+        </div>
+        <div>
+            <a href="{% url 'stack_underflow:index' %}">Index</a><br />
+        </div>
+    </body>
+
+</html>
