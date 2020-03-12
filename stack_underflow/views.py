@@ -14,20 +14,20 @@ def register(request):
     if request.method == 'POST':
         sign_Up_form = Sign_Up_Form(request.POST)
 
-        if sign_Up_Form.is_valid():
-            user = sign_Up_Form.save()
+        if sign_Up_form.is_valid():
+            user = sign_Up_form.save()
 
             user.set_password(user.password)
             user.save()
 
             registered = True
         else:
-            print(sign_Up_Form.errors)
+            print(sign_Up_form.errors)
     else:
-        sign_Up_Form = Sign_Up_Form()
+        sign_Up_form = Sign_Up_Form()
 
     return render(request, 'stack_underflow/register.html',
-                  context = {'sign_Up_Form': sign_Up_Form,
+                  context = {'sign_Up_Form': sign_Up_form,
                              'registered': registered})
 
 def user_login(request):
