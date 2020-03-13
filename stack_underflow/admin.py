@@ -1,3 +1,6 @@
 from django.contrib import admin
+from stack_underflow.models import Category, Thread
 
-# Register your models here.
+admin.site.register(Category)
+admin.site.register(Thread)
+

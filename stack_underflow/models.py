@@ -23,13 +23,18 @@ class Category(models.Model):
         self.slug = slugify(self.name)
         super(Category, self).save(*args, **kwargs)
 
+    class Meta:
+        verbose_name_plural = 'Categories'
+
     def __str__(self):
         return self.name
 
 class Thread(models.Model):
-    #FOREIGN KEY?
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
     question = models.CharField(max_length=128)
     replies = models.IntegerField(default=0)
+
+
 
     def __str__(self):
         return self.question
