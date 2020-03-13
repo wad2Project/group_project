@@ -1,5 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from django.urls import reverse
+
 from stack_underflow.forms import Sign_Up_Form
 
 
@@ -52,3 +54,8 @@ def user_login(request):
 def user_logout(request):
     logout(request)
     return redirect(reverse('stack_underflow:index'))
+
+
+def categories(request):
+    context_dict = {}
+    return render(request, 'stack_underflow/categories.html', context=context_dict)
