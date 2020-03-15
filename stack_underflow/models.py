@@ -46,6 +46,9 @@ class Reply(models.Model):
     thread = models.ForeignKey(Thread, on_delete=models.CASCADE)
     text = models.CharField(max_length=2000)
 
+    def __str__(self):
+        return self.thread
+
 class Notification(models.Model):
     owner = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     reply = models.ForeignKey(Reply, on_delete=models.CASCADE)
