@@ -5,7 +5,6 @@
     <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="icon" href="{% static 'images/favicon.ico' %}">
     <title>
         {% block title_block %}Welcome to StackUnderflow{% endblock %}
     </title>
@@ -28,7 +27,7 @@
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item"><a class="nav-link active" href="{% url 'stack_underflow:index' %}">Home</a></li>
-                        <li class="nav-item "><a class="nav-link active" href="{% url 'stack_underflow:index' %}">About</a></li>
+                        <li class="nav-item "><a class="nav-link active" href="{% url 'stack_underflow:categories' %}">Categories</a></li>
                         {% if user.is_authenticated %}
                         <li class="nav-item"><a class="nav-link active" href="{% url 'stack_underflow:index' %}">Logout</a></li>
                         <li class="nav-item"><a class="nav-link active" href="{% url 'stack_underflow:index' %}">Add Category</a></li>
