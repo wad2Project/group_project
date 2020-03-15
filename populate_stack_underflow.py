@@ -4,7 +4,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE',
 
 import django
 django.setup()
-from stack_underflow.models import Category,Thread
+from stack_underflow.models import Category,Thread, Reply
 
 def populate():
 
@@ -55,6 +55,11 @@ def add_cat(name,threads=0):
     c=Category.objects.get_or_create(name=name, threads=threads)[0]
     c.save()
     return c
+
+def add_reply(thread, text):
+    r=Reply.objects.get_or_create(thread=thread, text=text)
+    r.save()
+    return r
 
 
 if __name__=='__main__':

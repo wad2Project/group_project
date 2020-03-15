@@ -1,6 +1,17 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from django.http import HttpResponse
+from stack_underflow.models import Category
+from stack_underflow.models import Thread
+from stack_underflow.models import Reply
+from django.shortcuts import redirect
+from django.shortcuts import reverse
+from django.contrib.auth import authenticate, login
 from django.urls import reverse
+from django.shortcuts import redirect
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout
+from django.contrib.auth import authenticate, login, logout
+from datetime import datetime
 
 from stack_underflow.forms import Sign_Up_Form
 from stack_underflow.models import Category
@@ -59,11 +70,41 @@ def user_logout(request):
 
 
 def categories(request):
-    category_list = Category.objects.order_by('-threads')[:5]
     context_dict = {}
-    context_dict['categories'] = category_list
     return render(request, 'stack_underflow/categories.html', context=context_dict)
 
+<<<<<<< HEAD
 
 def add_category(request):
     return render(request, 'stack_underflow/add_category.html')
+
+#PARTIAL ADD_REPLY- NOT FINISHED
+def add_reply(request,thread_name):
+
+    try:
+        thread = Thread.objects.get(thread_name)
+    except Thread.DoesNotExist:
+        thread = None
+
+    if thread is None:
+        return redirect('/stack_underflow/')
+
+    #does not exist yet
+    form = ReplyForm()
+
+    if request.method == 'POST':
+        form = ReplyForm(request.POST)
+
+        if form.is_Valid():
+            if thread:
+                reply = form.save(commit=False)
+                reply.thread = thread
+                reply.save()
+
+                return redirect(reverse(''))
+
+        else:
+            print(form.errors)
+
+        context_dict = {'form' : form, 'thread' : thread}
+        return render(request, 'stack_underflow/add_reply.html', context=context_dict)
