@@ -9,36 +9,48 @@
 {% block body_block %}
 <div class="text-center mb-4">
     <img class="mb-4" src="{% static 'images/logo.jpg' %}" alt="" width="300" height="120">
-</div>
-<b class="row">
-    <b class="col-sm-6">
+    <div class="container my-4">
+        <hr class="my-5">
 
-        <div class="card card-inverse" style="background-color: #ffa200; border-color: #ffa200;" >
-            <div class="card-block">
-                <h5 class="card-title">Cat1</h5>
-                <a href="#" class="btn btn-outline-light my-2 my-sm-0">Link</a>
+        <h2 class="my-5 h2">Categories</h2>
+
+        <div class="card-columns text-white">
+            <div class="card card-inverse" style="background-color: #333; border-color: #333;">
+                <div class="card-block">
+                <blockquote class="blockquote mb-0 card-body">
+                    <p>Programming</p>
+                </blockquote>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+            <div class="card card-inverse" style="background-color: #333; border-color: #333;">
+                <div class="card-block">
+                <blockquote class="blockquote mb-0 card-body">
+                    <p>Programming</p>
+                </blockquote>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+            <div class="card mb-3 red">
+                <div class="card-body">
+                    <h5 class="card-title">Panel title</h5>
+                    <p>This card has supporting text below as a natural lead-in to additional content.</p>
+                    <p><small>Last updated 3 mins ago</small></p>
+                </div>
+            </div>
+            <div class="card blue text-center p-3 mt-2 mb-3">
+                <blockquote class="blockquote mb-0">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat.</p>
+                </blockquote>
+            </div>
+            <div class="card text-center mb-3 pink">
+                <div class="card-body">
+                    <h5 class="card-title">Panel title</h5>
+                    <p>This card has a regular title and short paragraphy of text below it.</p>
+                    <p><small>Last updated 3 mins ago</small></p>
+                </div>
             </div>
         </div>
-    </b>
-    <b class="col-sm-6">
-        <div class="card card-inverse" style="background-color: #ff4800; border-color: #ff4800;" >
-            <div class="card-block">
-                <h5 class="card-title">Cat2</h5>
-                <p class="card-text"></p>
-                <a href="#" class="btn btn-outline-light my-2 my-sm-0">Link</a>
-            </div>
-        </div>
-    </b>
-    <b class="col-sm-6">
-        <div class="card card-inverse" style="background-color: #ffffff; border-color: #ffffff;" >
-            <div class="card-block">
-                <h5 class="card-title">Can't find the category you are looking for....</h5>
-                <p class="card-text"></p>
-                <a href="{% url 'stack_underflow:add_category' %}" class="btn btn-primary">Add Category</a>
-            </div>
-        </div>
-    </b>
-    </div>
-</div>
-{% endblock %}
+        {% endblock %}
 
