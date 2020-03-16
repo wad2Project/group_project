@@ -13,7 +13,7 @@ from django.contrib.auth import logout
 from django.contrib.auth import authenticate, login, logout
 from datetime import datetime
 
-from stack_underflow.forms import Sign_Up_Form
+from stack_underflow.forms import Sign_Up_Form, CategoryForm
 from stack_underflow.models import Category
 
 
@@ -73,10 +73,22 @@ def categories(request):
     context_dict = {}
     return render(request, 'stack_underflow/categories.html', context=context_dict)
 
-<<<<<<< HEAD
+#<<<<<<< HEAD
 
 def add_category(request):
-    return render(request, 'stack_underflow/add_category.html')
+
+    form = CategoryForm()
+
+    if request.method == 'POST':
+        form = CategoryForm(request.POST)
+
+        if form.is_Valid():
+            cat = form.save(commit=True)
+            return redirect(reverse('stack_underflow:index'))
+        else:
+            print(form.errors)
+
+    return render(request, 'stack_underflow/add_category.html', {'form' : form})
 
 #PARTIAL ADD_REPLY- NOT FINISHED
 def add_reply(request,thread_name):

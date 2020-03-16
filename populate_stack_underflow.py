@@ -8,38 +8,50 @@ from stack_underflow.models import Category,Thread, Reply
 
 def populate():
 
+    replies = ['Example reply 1', 'Example reply 2', 'Example reply 3',
+                           'Example reply 4', 'Example reply 5', 'Example reply 6',
+                           'Example reply 7', 'Example reply 8', 'Example reply 9']
+
     programming_threads = [
         {'question': 'How to implement a linked list in Java?',
-         'replies': 13},
+         'replies_no': 13},
         {'question': 'Should I learn C++ or C# next?',
-         'replies': 25},
+         'replies_no': 25},
         {'question': 'What is a null pointer exception?',
-         'replies': 53} ]
+         'replies_no': 53} ]
 
     technology_threads = [
         {'question': 'Best gaming laptop 2020?',
-         'replies': 27},
+         'replies_no': 27},
         {'question': 'How to beat the Ender Dragon?',
-         'replies': 1200},
+         'replies_no': 1200},
         {'question': 'AI vs Machine learning?',
-         'replies': 121 } ]
+         'replies_no': 121 } ]
 
     politics_threads = [
         {'question': 'How do we elect supreme court judges in the UK?',
-         'replies': 5},
+         'replies_no': 5},
         {'question': 'What are WTO rules?',
-         'replies': 76},
+         'replies_no': 76},
         {'question': 'Why are some cabinet members not MPs?',
-         'replies': 14} ]
+         'replies_no': 14} ]
 
     cats = {'Programming': {'threads': programming_threads, 'threads_no': 3600},
-            'Technology': {'threads': technology_threads, 'threads_no': 2800},
-            'Politics': {'threads': politics_threads, 'threads_no': 2100} }
+            'Technology': {'threads': technology_threads, 'threads_no': 2800 },
+            'Politics': {'threads': politics_threads, 'threads_no': 2100 } }
+
+    threads_list =[]
 
     for cat, cat_data in cats.items():
         c = add_cat(cat, cat_data['threads_no'])
         for t in cat_data['threads']:
-            add_thread(c, t['question'], t['replies'])
+            thread = add_thread(c, t['question'], t['replies_no'])
+            threads_list.append(thread)
+
+    for i in range(len(threads_list)):
+        add_reply(threads_list[i], replies[i])
+
+
 
     for c in Category.objects.all():
         for t in Thread.objects.filter(category=c):
@@ -57,7 +69,7 @@ def add_cat(name,threads=0):
     return c
 
 def add_reply(thread, text):
-    r=Reply.objects.get_or_create(thread=thread, text=text)
+    r=Reply.objects.get_or_create(thread=thread, text=text)[0]
     r.save()
     return r
 
