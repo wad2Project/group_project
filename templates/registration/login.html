@@ -6,15 +6,16 @@ Login
 {% endblock %}
 
 {% block body_block %}
-
+<div class="text-center mb-4">
+    <img class="mb-4" src="{% static 'images/logo.jpg' %}" alt="" width="300" height="120">
+</div>
 <div class="container">
-    <div class="row">
+    <div class="row justify-content-md-center">
         <div class="col-md-4">
-            <div class="card mb-4">
+            <div class="card mb-4" style="background-color: #e0e0e0; border-color: #e0e0e0;">
                 <div class="card-body">
                     <div class="form-label-group">
                         <div class="text-center mb-4">
-                            <img class="mb-4" src="{% static 'images/logo.jpg' %}" alt="" width="300" height="120">
                             <h1 class="h3 mb-3 font-weight-normal">Login to StackUnderflow</h1>
                             <form class="form-signin" role="form" method="post" action=".">
                                 {% csrf_token %}
@@ -22,8 +23,7 @@ Login
                                 <input type="text" name="username" id="id_username" class="form-control" placeholder="Username" required autofocus>
                                 <label for="inputPassword" class="sr-only">Password</label>
                                 <input type="password" name="password" id="id_password" class="form-control" placeholder="Password" required>
-                                <button class="btn btn-lg btn-primary btn-block" type="submit" value="Submit">Sign in
-                                </button>
+                                <button class="btn btn-lg btn-dark btn-block" type="submit" value="Submit">Sign in</button>
                             </form>
                         </div>
                     </div>

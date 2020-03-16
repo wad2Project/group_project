@@ -5,21 +5,22 @@ Register
 {% endblock %}
 
 {% block body_block %}
+<div class="text-center mb-4">
+    <img class="mb-4" src="{% static 'images/logo.jpg' %}" alt="" width="300" height="120">
+</div>
 <div class="container">
-    <div class="row">
+    <div class="row justify-content-md-center">
         <div class="col-md-4">
-            <div class="card mb-4">
+            <div class="card mb-4" style="background-color: #e0e0e0; border-color: #e0e0e0;">
                 <div class="card-body">
                     <div class="form-group">
                         <div class="text-center mb-4">
-                            <img class="mb-4" src="{% static 'images/logo.jpg' %}" alt="" width="300" height="120">
                             <h1 class="h3 mb-3 font-weight-normal">Registration</h1>
                             <form role="form" method="post" action=".">
                                 {% csrf_token %}
                                 <div class="form-group">
                                     <p class="required"><label class="required" for="id_username">Username:</label>
-                                        <input class="form-control" id="id_username" maxlength="30" name="username"
-                                               type="text"/>
+                                        <input class="form-control" id="id_username" maxlength="30" name="username" type="text"/>
                                         <span class="helptext">30 characters or less. Letters, digits and @/./+/-/_ only. </span>
                                     </p>
                                     <p class="required"><label class="required" for="id_email">E-mail:</label>
@@ -33,7 +34,7 @@ Register
                                         <input class="form-control" id="id_password2" name="password2" type="password"/>
                                     </p>
                                 </div>
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="submit" class="btn btn-dark">Submit</button>
                             </form>
                         </div>
                     </div>
