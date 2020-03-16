@@ -25,4 +25,5 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('stackunderflow/', include('stack_underflow.urls')),
     path('admin/', admin.site.urls),
+    path('accounts/', include('registration.backends.simple.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

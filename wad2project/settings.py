@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'stack_underflow',
+    'registration',
 ]
 
 MIDDLEWARE = [
@@ -128,3 +129,10 @@ MEDIA_URL = '/media/'
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [STATIC_DIR, ]
+
+# Registration variables
+
+REGISTRATION_OPEN = True
+REGISTRATION_AUTO_LOGIN = True
+LOGIN_REDIRECT_URL = 'stack_underflow:index'
+LOGIN_URL = 'auth_login'

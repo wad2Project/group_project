@@ -31,24 +31,28 @@
                     <a href="#" class="btn btn-outline-light">Go somewhere</a>
                 </div>
             </div>
-            <div class="card mb-3 red">
+            <div class="card mb-3" style="background-color: #f77959; border-color: #f77959;">
                 <div class="card-body">
                     <h5 class="card-title">Panel title</h5>
                     <p>This card has supporting text below as a natural lead-in to additional content.</p>
                     <p><small>Last updated 3 mins ago</small></p>
                 </div>
             </div>
-            <div class="card blue text-center p-3 mt-2 mb-3">
-                <blockquote class="blockquote mb-0">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat.</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat.</p>
+
+            <div class="card blue text-center p-3 mt-2 mb-3" style="background-color: #2702f5; border-color: #2702f5;">
+                <div class="card-block">
+                <blockquote class="blockquote mb-0 card-body">
+                    <p>Another category</p>
                 </blockquote>
+                    <a href="{% url 'stack_underflow:add_category' %}" class="btn btn-outline-light">Add Category</a>
+                </div>
             </div>
-            <div class="card text-center mb-3 pink">
+            </div>
+            <div class="card text-center mb-3" style="background-color: #f77959; border-color: #f77959;">
                 <div class="card-body">
-                    <h5 class="card-title">Panel title</h5>
-                    <p>This card has a regular title and short paragraphy of text below it.</p>
-                    <p><small>Last updated 3 mins ago</small></p>
+                    <h5 class="card-title"></h5>
+                    <p>Can't find the category you are looking for....</p>
+                    <a href="{% url 'stack_underflow:add_category' %}" class="btn btn-outline-light">Add Category</a>
                 </div>
             </div>
         </div>

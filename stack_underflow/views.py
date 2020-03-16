@@ -43,7 +43,7 @@ def register(request):
     else:
         sign_Up_form = Sign_Up_Form()
 
-    return render(request, 'stack_underflow/register.html',
+    return render(request, 'stack_underflow/registration_form.html',
                   context = {'sign_Up_Form': sign_Up_form,
                              'registered': registered})
 

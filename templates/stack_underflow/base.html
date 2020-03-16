@@ -29,12 +29,12 @@
                         <li class="nav-item"><a class="nav-link active" href="{% url 'stack_underflow:index' %}">Home</a></li>
                         <li class="nav-item "><a class="nav-link active" href="{% url 'stack_underflow:categories' %}">Categories</a></li>
                         {% if user.is_authenticated %}
-                        <li class="nav-item"><a class="nav-link active" href="{% url 'stack_underflow:index' %}">Logout</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="{% url 'auth_logout' %}?next={% url 'stack_underflow:index' %}">Logout</a></li>
                         <li class="nav-item"><a class="nav-link active" href="{% url 'stack_underflow:index' %}">Add Category</a></li>
                         <li class="nav-item"><a class="nav-link active" href="{% url 'stack_underflow:index' %}">Change Password</a></li>
                         {% else %}
-                        <li class="nav-item"><a class="nav-link active" href="{% url 'stack_underflow:register' %}">Register Here</a></li>
-                        <li class="nav-item "><a class="nav-link active" href="{% url 'stack_underflow:login' %}">Login</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="{% url 'registration_register' %}">Register Here</a></li>
+                        <li class="nav-item "><a class="nav-link active" href="{% url 'auth_login' %}">Login</a></li>
                         {% endif %}
                     </ul>
                      <form class="form-inline my-2 my-lg-0">

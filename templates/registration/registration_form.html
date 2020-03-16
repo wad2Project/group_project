@@ -1,0 +1,46 @@
+{% extends 'stack_underflow/base.html' %}
+{% load staticfiles %}
+{% block title_block %}
+Register
+{% endblock %}
+
+{% block body_block %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div class="form-group">
+                        <div class="text-center mb-4">
+                            <img class="mb-4" src="{% static 'images/logo.jpg' %}" alt="" width="300" height="120">
+                            <h1 class="h3 mb-3 font-weight-normal">Registration</h1>
+                            <form role="form" method="post" action=".">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <p class="required"><label class="required" for="id_username">Username:</label>
+                                        <input class="form-control" id="id_username" maxlength="30" name="username"
+                                               type="text"/>
+                                        <span class="helptext">30 characters or less. Letters, digits and @/./+/-/_ only. </span>
+                                    </p>
+                                    <p class="required"><label class="required" for="id_email">E-mail:</label>
+                                        <input class="form-control" id="id_email" name="email" type="email"/>
+                                    </p>
+                                    <p class="required"><label class="required" for="id_password1"> Password:</label>
+                                        <input class="form-control" id="id_password1" name="password1" type="password"/>
+                                    </p>
+                                    <p class="required">
+                                        <label class="required" for="id_password2">Re-enter password:</label>
+                                        <input class="form-control" id="id_password2" name="password2" type="password"/>
+                                    </p>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    {% endblock %}
