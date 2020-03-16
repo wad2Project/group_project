@@ -19,8 +19,10 @@ from stack_underflow.models import Category
 
 def index(request):
     category_list = Category.objects.order_by('-threads')[:5]
+    threads_list = Thread.objects.order_by('-replies')[:5]
     context_dict = {}
     context_dict['categories'] = category_list
+    context_dict['threads'] = threads_list
     return render(request, 'stack_underflow/index.html', context=context_dict)
 
 def register(request):
