@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-{%extends 'stack_underflow/base.html' %}
+{% extends 'stack_underflow/base.html' %}
 {%load staticfiles %}
 
 <html>
@@ -10,36 +10,35 @@
 <div class="text-center mb-4">
     <img class="mb-4" src="{% static 'images/logo.jpg' %}" alt="" width="300" height="120">
 </div>
-<div class="row">
-    <div class="col-sm-6">
+<b class="row">
+    <b class="col-sm-6">
 
-        <div class="card">
-            <div class="card-body">
+        <div class="card card-inverse" style="background-color: #ffa200; border-color: #ffa200;" >
+            <div class="card-block">
                 <h5 class="card-title">Cat1</h5>
-                <p class="card-text"></p>
-                <a href="#" class="btn btn-primary">Link</a>
+                <a href="#" class="btn btn-outline-light my-2 my-sm-0">Link</a>
             </div>
         </div>
-        <div class="card">
-            <div class="card-body">
+    </b>
+    <b class="col-sm-6">
+        <div class="card card-inverse" style="background-color: #ff4800; border-color: #ff4800;" >
+            <div class="card-block">
                 <h5 class="card-title">Cat2</h5>
                 <p class="card-text"></p>
-                <a href="#" class="btn btn-primary">Link</a>
+                <a href="#" class="btn btn-outline-light my-2 my-sm-0">Link</a>
             </div>
         </div>
-
-        <div class="card">
-            <div class="card-body">
+    </b>
+    <b class="col-sm-6">
+        <div class="card card-inverse" style="background-color: #ffffff; border-color: #ffffff;" >
+            <div class="card-block">
                 <h5 class="card-title">Can't find the category you are looking for....</h5>
                 <p class="card-text"></p>
                 <a href="{% url 'stack_underflow:add_category' %}" class="btn btn-primary">Add Category</a>
             </div>
         </div>
-
+    </b>
     </div>
 </div>
-
-
 {% endblock %}
 
-</html>
