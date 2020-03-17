@@ -13,7 +13,7 @@ from django.contrib.auth import logout
 from django.contrib.auth import authenticate, login, logout
 from datetime import datetime
 
-from stack_underflow.forms import Sign_Up_Form, CategoryForm
+from stack_underflow.forms import Sign_Up_Form, CategoryForm, UserProfileForm
 from stack_underflow.models import Category
 
 
@@ -30,21 +30,29 @@ def register(request):
 
     if request.method == 'POST':
         sign_Up_form = Sign_Up_Form(request.POST)
+        profile_form = UserProfileForm(request.POST)
 
-        if sign_Up_form.is_valid():
+        if sign_Up_form.is_valid() and profile_form.is_valid():
             user = sign_Up_form.save()
 
             user.set_password(user.password)
             user.save()
 
+            profile = profile_form.save(commit=False)
+            profile.user = user
+
+            profile.save()
+
             registered = True
         else:
-            print(sign_Up_form.errors)
+            print(sign_Up_form.errors, profile_form.errors)
     else:
         sign_Up_form = Sign_Up_Form()
+        profile_form = UserProfileForm()
 
     return render(request, 'stack_underflow/registration_form.html',
                   context = {'sign_Up_Form': sign_Up_form,
+                             'profile_form': profile_form,
                              'registered': registered})
 
 def user_login(request):
@@ -66,6 +74,7 @@ def user_login(request):
     else:
         return render(request, 'stack_underflow/login.html')
 
+@login_required
 def user_logout(request):
     logout(request)
     return redirect(reverse('stack_underflow:index'))
@@ -77,6 +86,7 @@ def categories(request):
 
 #<<<<<<< HEAD
 
+@login_required
 def add_category(request):
 
     form = CategoryForm()
@@ -93,6 +103,7 @@ def add_category(request):
     return render(request, 'stack_underflow/add_category.html', {'form' : form})
 
 #PARTIAL ADD_REPLY- NOT FINISHED
+@login_required
 def add_reply(request,thread_name):
 
     try:

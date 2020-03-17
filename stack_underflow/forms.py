@@ -7,7 +7,7 @@ class Sign_Up_Form(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ('username', 'password')
+        fields = ('username', 'email', 'password')
 
 class CategoryForm(forms.ModelForm):
     name = forms.CharField(max_length=128,
@@ -37,5 +37,11 @@ class ThreadForm(forms.ModelForm):
             cleaned_data['url'] = url
 
         return cleaned_data
+
+class UserProfileForm(forms.ModelForm):
+
+    class Meta:
+        model = UserProfile
+
 
 
