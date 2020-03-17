@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from stack_underflow.models import UserProfile, Category, Thread
+from stack_underflow.models import UserProfile, Category, Thread, Reply
 
 class Sign_Up_Form(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput())
@@ -37,6 +37,14 @@ class ThreadForm(forms.ModelForm):
             cleaned_data['url'] = url
 
         return cleaned_data
+
+class ReplyForm(forms.ModelForm):
+    text = forms.CharField(max_length=2000,
+                           help_text='Please enter a reply')
+
+    class Meta:
+        model = Reply
+        fields = ('text',)
 
 class UserProfileForm(forms.ModelForm):
 

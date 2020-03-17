@@ -13,7 +13,7 @@ from django.contrib.auth import logout
 from django.contrib.auth import authenticate, login, logout
 from datetime import datetime
 
-from stack_underflow.forms import Sign_Up_Form, CategoryForm, UserProfileForm
+from stack_underflow.forms import Sign_Up_Form, CategoryForm, UserProfileForm, ReplyForm
 from stack_underflow.models import Category
 
 
@@ -105,7 +105,6 @@ def add_category(request):
 
     return render(request, 'stack_underflow/add_category.html', {'form' : form})
 
-#PARTIAL ADD_REPLY- NOT FINISHED
 @login_required
 def add_reply(request,thread_name):
 
@@ -117,7 +116,6 @@ def add_reply(request,thread_name):
     if thread is None:
         return redirect('/stack_underflow/')
 
-    #does not exist yet
     form = ReplyForm()
 
     if request.method == 'POST':
@@ -129,10 +127,11 @@ def add_reply(request,thread_name):
                 reply.thread = thread
                 reply.save()
 
-                return redirect(reverse(''))
+                return redirect(reverse('stack_underflow:index'))
 
         else:
             print(form.errors)
 
-        context_dict = {'form' : form, 'thread' : thread}
+        context_dict = {'form': form, 'thread': thread}
+        # This url below is just a placeholder
         return render(request, 'stack_underflow/add_reply.html', context=context_dict)
