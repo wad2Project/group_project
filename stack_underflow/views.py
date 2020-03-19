@@ -122,10 +122,10 @@ def add_category(request):
     return render(request, 'stack_underflow/add_category.html', {'form' : form})
 
 @login_required
-def add_thread(request, category_name):
+def add_thread(request, category_name_slug):
 
     try:
-        cat = Category.objects.get(category_name)
+        cat = Category.objects.get(slug=category_name_slug)
     except Category.DoesNotExist:
         cat = None
 
@@ -136,7 +136,7 @@ def add_thread(request, category_name):
 
     if request.method == 'POST':
         form = ThreadForm(request.POST)
-        if form.is_Valid():
+        if form.is_valid():
             if cat:
                 t = form.save(commit=False)
                 t.category = cat
@@ -144,7 +144,7 @@ def add_thread(request, category_name):
                 return redirect(reverse('stack_underflow:index'))
         else:
             print(form.errors)
-        context_dict = {'form': form, 'category': cat}
+    context_dict = {'form': form, 'category': cat}
     return render(request, 'stack_underflow/add_thread.html', context=context_dict)
 
 

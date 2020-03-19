@@ -18,15 +18,15 @@ class CategoryForm(forms.ModelForm):
         fields = ('name',)
 
 class ThreadForm(forms.ModelForm):
-    category = forms.CharField(max_length=128,
-                               help_text="Please enter the category you wish to add a thread to")
+
     question = forms.CharField(max_length=128,
                                help_text="Please enter a question")
     replies = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
 
     class Meta:
         model = Thread
-        fields = ('category', 'question')
+        exclude = ('category',)
+        fields = ('question',)
 
     def clean(self):
         cleaned_data = self.cleaned_data

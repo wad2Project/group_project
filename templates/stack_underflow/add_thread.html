@@ -1,0 +1,26 @@
+{% extends 'stack_underflow/base.html' %}
+{% load staticfiles %}
+
+<title>
+{% block title_block %}
+    Add a Thread
+{% endblock %}
+</title>
+
+{% block body_block %}
+        <h1>Add a Thread to {{ category.name }}</h1>
+        <div>
+            <form role="form" id="page_form" method="post" action="/stack_underflow/category/{{ category.slug }}/add_thread/">
+                {% csrf_token %}
+                {% for hidden in form.hidden_fields %}
+                    {{ hidden }}
+                {% endfor %}
+                {% for field in form.visible_fields %}
+                    {{ field.errors }}
+                    {{ field.help_text }}
+                    {{ field }}
+                {% endfor %}
+                <input type="submit" name="submit" value="Add Thread" />
+            </form>
+        </div>
+{% endblock %}

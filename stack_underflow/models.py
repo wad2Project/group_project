@@ -31,6 +31,7 @@ class Thread(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     question = models.CharField(max_length=128)
     replies = models.IntegerField(default=0)
+    #url = models.URLField()
 
     def save(self, *args, **kwargs):
         super(Thread, self).save(*args, **kwargs)
