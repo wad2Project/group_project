@@ -77,6 +77,22 @@ def user_login(request):
     else:
         return render(request, 'stack_underflow/login.html')
 
+def show_category(request, category_name_slug):
+    context_dict = {}
+
+    try:
+        category = Category.objects.get(slug=category_name_slug)
+        threads = Thread.objects.filter(category=category)
+        context_dict['threads'] = threads
+        context_dict['category'] = category
+    except Category.DoesNotExist:
+        context_dict['category'] = None
+        context_dict['threads'] = None
+
+    return render(request, 'stack_underflow/category.html', context=context_dict)
+
+
+
 @login_required
 def user_logout(request):
     logout(request)
