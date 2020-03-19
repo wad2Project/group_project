@@ -13,7 +13,7 @@ from django.contrib.auth import logout
 from django.contrib.auth import authenticate, login, logout
 from datetime import datetime
 
-from stack_underflow.forms import Sign_Up_Form, CategoryForm, UserProfileForm, ReplyForm
+from stack_underflow.forms import Sign_Up_Form, CategoryForm, UserProfileForm, ReplyForm, ThreadForm
 from stack_underflow.models import Category
 
 
@@ -106,7 +106,36 @@ def add_category(request):
     return render(request, 'stack_underflow/add_category.html', {'form' : form})
 
 @login_required
-def add_reply(request,thread_name):
+def add_thread(request, category_name):
+
+    try:
+        cat = Category.objects.get(category_name)
+    except Category.DoesNotExist:
+        cat = None
+
+    if cat is None:
+        return redirect('stack_underflow:index')
+
+    form = ThreadForm()
+
+    if request.method == 'POST':
+        form = ThreadForm(request.POST)
+        if form.is_Valid():
+            if cat:
+                t = form.save(commit=False)
+                t.category = cat
+                t.save()
+                return redirect(reverse('stack_underflow:index'))
+        else:
+            print(form.errors)
+        context_dict = {'form': form, 'category': cat}
+    return render(request, 'stack_underflow/add_thread.html', context=context_dict)
+
+
+
+
+@login_required
+def add_reply(request, thread_name):
 
     try:
         thread = Thread.objects.get(thread_name)
@@ -114,7 +143,7 @@ def add_reply(request,thread_name):
         thread = None
 
     if thread is None:
-        return redirect('/stack_underflow/')
+        return redirect('stack_underflow:index')
 
     form = ReplyForm()
 
