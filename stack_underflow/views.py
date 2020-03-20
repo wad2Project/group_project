@@ -91,6 +91,20 @@ def show_category(request, category_name_slug):
 
     return render(request, 'stack_underflow/category.html', context=context_dict)
 
+def show_thread(request, thread_question_slug):
+    context_dict = {}
+
+    try:
+        thread = Thread.objects.get(slug=thread_question_slug)
+        replies = Reply.objects.filter(thread=thread)
+        context_dict['replies'] = replies
+        context_dict['thread'] = thread
+    except Thread.DoesNotExist:
+        context_dict['replies'] = None
+        context_dict['thread'] = None
+
+    return render(request, 'stack_underflow/thread.html', context=context_dict)
+
 
 
 @login_required
@@ -113,7 +127,7 @@ def add_category(request):
     if request.method == 'POST':
         form = CategoryForm(request.POST)
 
-        if form.is_Valid():
+        if form.is_valid():
             cat = form.save(commit=True)
             return redirect(reverse('stack_underflow:index'))
         else:

@@ -29,11 +29,13 @@ class Category(models.Model):
 class Thread(models.Model):
     #owner = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    question = models.CharField(max_length=128)
+    question = models.CharField(max_length=128, unique=True)
     replies = models.IntegerField(default=0)
+    slug = models.SlugField(unique=True)
     #url = models.URLField()
 
     def save(self, *args, **kwargs):
+        self.slug = slugify(self.question)
         super(Thread, self).save(*args, **kwargs)
 
     def __str__(self):

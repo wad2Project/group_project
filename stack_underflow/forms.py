@@ -12,6 +12,7 @@ class Sign_Up_Form(forms.ModelForm):
 class CategoryForm(forms.ModelForm):
     name = forms.CharField(max_length=128,
                            help_text="Please enter the category name")
+    slug = forms.CharField(widget=forms.HiddenInput(), required=False)
 
     class Meta:
         model = Category
@@ -22,21 +23,11 @@ class ThreadForm(forms.ModelForm):
     question = forms.CharField(max_length=128,
                                help_text="Please enter a question")
     replies = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
+    slug = forms.CharField(widget=forms.HiddenInput(), required=False)
 
     class Meta:
         model = Thread
-        exclude = ('category',)
         fields = ('question',)
-
-    def clean(self):
-        cleaned_data = self.cleaned_data
-        url = cleaned_data.get('url')
-
-        if url and not url.startswith('http://'):
-            url = f'http://{url}'
-            cleaned_data['url'] = url
-
-        return cleaned_data
 
 class ReplyForm(forms.ModelForm):
     text = forms.CharField(max_length=2000,

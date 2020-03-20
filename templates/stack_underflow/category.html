@@ -18,7 +18,7 @@
     {% if threads %}
     <ul>
         {% for thread in threads %}
-        <li><a href="{{ thread }}">{{ thread.question }}</a></li>
+        <li><a href="{% url 'stack_underflow:show_thread' thread.slug %}">{{ thread.question }}</a></li>
         {% endfor %}
     </ul>
     {% else %}

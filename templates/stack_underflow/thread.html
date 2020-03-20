@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+{% extends 'stack_underflow/base.html' %}
+{% load staticfiles %}
+
+<title>
+{% block title_block %}
+	{% if thread %}
+		{{ thread.question }}
+	{% else %}
+		Unkown Thread
+	{% endif %}
+{% endblock %}
+</title>
+
+{% block body_block %}
+	{% if thread %}
+	<h1>{{ thread.question }}</h1>
+		{% if replies %}
+	<ul>
+		{% for reply in replies %}
+		{{ reply.text }}
+		{% endfor %}
+	</ul>
+		{% endif %}
+	{% else %}
+	<strong> No replies for this thread.</strong>
+	{% endif %}
+
+{% endblock %}
