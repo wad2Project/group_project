@@ -44,7 +44,7 @@
                     <ul>
                         {% for thread in threads %}
                         <li>
-                            <a href="{% url 'stack_underflow:index' %}"> {{ thread.question }}</a>
+                            <a href="{% url 'stack_underflow:show_thread' thread.slug %}"> {{ thread.question }}</a>
                         </li>
                         {% endfor %}
                     </ul>
