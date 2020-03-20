@@ -103,15 +103,6 @@ def show_thread(request, thread_question_slug):
         context_dict['replies'] = None
         context_dict['thread'] = None
 
-    form = ReplyForm()
-    if request.method == 'POST':
-        form = ReplyForm(request.POST)
-        if form.is_valid():
-            reply = form.save(commit=False)
-            return redirect(reverse('stack_underflow:index'))
-        else:
-            print(form.errors)
-
     return render(request, 'stack_underflow/thread.html', context=context_dict)
 
 
@@ -201,4 +192,4 @@ def add_reply(request, thread_question_slug):
             print(form.errors)
 
     context_dict = {'form': form, 'thread': thread}
-    return render(request, 'stack_underflow/thread.html', context=context_dict)
+    return render(request, 'stack_underflow/add_reply.html', context=context_dict)
