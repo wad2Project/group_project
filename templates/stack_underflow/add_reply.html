@@ -15,7 +15,7 @@
 {% block body_block %}
     <h1>Add a Reply</h1>
     <div>
-        <form id="reply_form" method="post" action="/stack_underflow/category/{{ thread.slug }}/">
+        <form id="reply_form" method="post" action="/stack_underflow/category/{{ thread.slug }}/add_reply/">
             {% csrf_token %}
             {% for hidden in form.hidden_fields %}
                 {{ hidden }}
