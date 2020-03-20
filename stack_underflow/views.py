@@ -103,6 +103,15 @@ def show_thread(request, thread_question_slug):
         context_dict['replies'] = None
         context_dict['thread'] = None
 
+    form = ReplyForm()
+    if request.method == 'POST':
+        form = ReplyForm(request.POST)
+        if form.is_valid():
+            reply = form.save(commit=False)
+            return redirect(reverse('stack_underflow:index'))
+        else:
+            print(form.errors)
+
     return render(request, 'stack_underflow/thread.html', context=context_dict)
 
 
@@ -165,10 +174,10 @@ def add_thread(request, category_name_slug):
 
 
 @login_required
-def add_reply(request, thread_name):
+def add_reply(request, thread_question_slug):
 
     try:
-        thread = Thread.objects.get(thread_name)
+        thread = Thread.objects.get(slug=thread_question_slug)
     except Thread.DoesNotExist:
         thread = None
 
@@ -180,7 +189,7 @@ def add_reply(request, thread_name):
     if request.method == 'POST':
         form = ReplyForm(request.POST)
 
-        if form.is_Valid():
+        if form.is_valid():
             if thread:
                 reply = form.save(commit=False)
                 reply.thread = thread
@@ -191,6 +200,5 @@ def add_reply(request, thread_name):
         else:
             print(form.errors)
 
-        context_dict = {'form': form, 'thread': thread}
-        # This url below is just a placeholder
-        return render(request, 'stack_underflow/add_reply.html', context=context_dict)
+    context_dict = {'form': form, 'thread': thread}
+    return render(request, 'stack_underflow/thread.html', context=context_dict)
