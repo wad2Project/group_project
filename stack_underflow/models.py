@@ -1,3 +1,5 @@
+
+
 from django.db import models
 from django.template.defaultfilters import slugify
 from django.contrib.auth.models import User
@@ -31,6 +33,7 @@ class Thread(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     question = models.CharField(max_length=128, unique=True)
     replies = models.IntegerField(default=0)
+    created_at = models.DateTimeField(auto_now_add=True)
     slug = models.SlugField(unique=True)
     #url = models.URLField()
 
