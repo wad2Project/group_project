@@ -9,54 +9,50 @@
     {% endblock %}
 </head>
 {% block body_block %}
-<div class="text-center mb-4">
-    <img class="mb-4" src="{% static 'images/logo.jpg' %}" alt="" width="300" height="120">
-    <div class="container my-4">
-        <hr class="my-5">
+  <section class="jumbotron text-center">
+    <div class="container">
+      <h1>Categories</h1>
+      <p class="lead text-muted">Hopefully, you can find a category you are looking for, if not why not add your own?</p>
+    </div>
+  </section>
 
-        <h2 class="my-5 h2">Categories</h2>
-
+  <div class="album py-5 bg-light">
+    <div class="container">
         <div class="card-columns text-white">
-            <div class="card card-inverse" style="background-color: #333; border-color: #333;">
+            <div class="card blue text-center p-3 mt-2 mb-3" style="background-color: #000000; border-color: #000000;">
                 <div class="card-block">
                 <blockquote class="blockquote mb-0 card-body">
-                    <p>Programming</p>
+                    <p>Category</p>
                 </blockquote>
-                    <a href="#" class="btn btn-outline-light">Go somewhere</a>
+                    <a class="btn btn-outline-light" href="{% url 'stack_underflow:add_category' %}">Add Category</a>
                 </div>
             </div>
-            <div class="card card-inverse" style="background-color: #f77959; border-color: #f77959;">
-                <div class="card-block">
-                <blockquote class="blockquote mb-0 card-body">
-                    <p>Programming</p>
-                </blockquote>
-                    <a href="#" class="btn btn-outline-light">Go somewhere</a>
-                </div>
-            </div>
-            <div class="card mb-3" style="background-color: #f77959; border-color: #f77959;">
+            <div class="card mb-3 text-center" style="background-color: #f77959; border-color: #f77959;">
                 <div class="card-body">
-                    <h5 class="card-title">Panel title</h5>
-                    <p>This card has supporting text below as a natural lead-in to additional content.</p>
-                    <p><small>Last updated 3 mins ago</small></p>
+                    <h5 class="card-title text-center">Panel title</h5>
+                    <a class="btn btn-outline-light" href="{% url 'stack_underflow:add_category' %}">Add Category</a>
                 </div>
             </div>
-
-            <div class="card blue text-center p-3 mt-2 mb-3" style="background-color: #2702f5; border-color: #2702f5;">
+            <div class="card blue text-center p-3 mt-2 mb-3" style="background-color: #000000; border-color: #000000;">
                 <div class="card-block">
                 <blockquote class="blockquote mb-0 card-body">
                     <p>Another category</p>
                 </blockquote>
-                    <a href="{% url 'stack_underflow:add_category' %}" class="btn btn-outline-light">Add Category</a>
-                </div>
-            </div>
-            </div>
-            <div class="card text-center mb-3" style="background-color: #f77959; border-color: #f77959;">
-                <div class="card-body">
-                    <h5 class="card-title"></h5>
-                    <p>Can't find the category you are looking for....</p>
-                    <a href="{% url 'stack_underflow:add_category' %}" class="btn btn-outline-light">Add Category</a>
+                    <a class="btn btn-outline-light" href="{% url 'stack_underflow:add_category' %}">Add Category</a>
                 </div>
             </div>
         </div>
-        {% endblock %}
+    </div>
+  </div>
+<div class="card" style="background-color: #f77959; border-color: #f77959;">
+     <div class="text-white">
+        <div class="card-body">
+            <h5 class="card-title"></h5>
+            <p>Can't find the category you are looking for....</p>
+            <a class="btn btn-outline-light" href="{% url 'stack_underflow:add_category' %}">Add Category</a>
+        </div>
+     </div>
+</div>
+
+{% endblock %}
 

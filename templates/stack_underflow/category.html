@@ -18,14 +18,17 @@
     {% if threads %}
     <ul>
         {% for thread in threads %}
-        <div class="card-body py-3">
+        <div class="card-body card-body-index py-3">
             <div class="row no-gutters align-items-center">
                 <div class="col"> <a href="{% url 'stack_underflow:show_thread' thread.slug %}" class="text-big" data-abc="true">{{ thread.question }}</a>
                     <div class="text-muted small mt-1">{{ thread.created_at }}<a href="javascript:void(0)" class="text-muted" data-abc="true"></a></div>
                 </div>
                 <div class="d-none d-md-block col-4">
                     <div class="row no-gutters align-items-center">
-                        <div class="col-4">{{ thread.replies }}</div>
+                        <div class="col-4">
+                            <p>  Replies:</p>
+                            <span class="badge badge-dark badge-pill">{{ thread.replies }}</span>
+                        </div>
                         <div class="media col-8 align-items-center"> <img src="{% static 'images/logo2.png' %}" alt="" class="d-block ui-w-30 rounded-circle" width="50" height="50">
                             <div class="media-body flex-truncate ml-2">
                                 <div class="line-height-1 text-truncate">1 day ago</div> <a href="javascript:void(0)" class="text-muted small text-truncate" data-abc="true">by USER</a>
@@ -41,7 +44,7 @@
     <strong>No pages currently in category.</strong>
     {% endif %}
         {% if user.is_authenticated %}
-             <a href="{% url 'stack_underflow:add_thread' category.slug %}">Add Thread</a> <br />
+            <a class="btn btn-dark" href="{% url 'stack_underflow:add_thread' category.slug %}" role="button">Add Thread</a> <br />
         {% endif %}
     {% else %}
     The specified category does not exist.

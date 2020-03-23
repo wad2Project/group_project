@@ -240,3 +240,11 @@ body {
 .card-deck .card {
   margin-bottom: 15px;
 }
+
+.list-group-item {
+  background-color: ;
+}
+
+.card-body-index {
+    background-color: #e0e0e0;
+}
