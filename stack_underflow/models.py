@@ -49,6 +49,7 @@ class Reply(models.Model):
     thread = models.ForeignKey(Thread, on_delete=models.CASCADE)
     text = models.CharField(max_length=2000)
 
+
     class Meta:
         verbose_name_plural = 'Replies'
 

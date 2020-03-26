@@ -33,6 +33,7 @@ class ReplyForm(forms.ModelForm):
     text = forms.CharField(max_length=2000,
                            help_text='Please enter a reply')
 
+
     class Meta:
         model = Reply
         fields = ('text',)

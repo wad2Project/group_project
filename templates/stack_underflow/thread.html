@@ -2,6 +2,7 @@
 {% extends 'stack_underflow/base.html' %}
 {% load staticfiles %}
 
+
 <title>
 {% block title_block %}
 	{% if thread %}
@@ -20,14 +21,33 @@
 	{% if thread %}
 	<h1>{{ thread.question }}</h1>
 		{% if replies %}
-	<ul>
+	<ul id = "js">
 		{% for reply in replies %}
-		{{ reply.text }} <br />
+		{{ reply.text }}  <br />
+		{{ reply.created_at }} <br />
 		{% endfor %}
 	</ul>
 		{% endif %}
 	{% else %}
 	<strong> No replies for this thread.</strong>
 	{% endif %}
+
+<script type="text/javascript"
+	src="fontSize.js">
+</script>
+
+<script>
+function inceraseFont() {
+  document.getElementById("js").style.fontSize = "larger";
+}
+function decreaseFont() {
+	document.getElementById("js").style.fontSize = "smaller";
+}
+</script>
+
+<button type="button" onclick="inceraseFont()">Increase Font size</button>
+<button type="button" onclick="decreaseFont()">Decrease Font size</button>
+
+
 
 {% endblock %}
