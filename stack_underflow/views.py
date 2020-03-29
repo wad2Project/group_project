@@ -192,4 +192,4 @@ def add_reply(request, thread_question_slug):
             print(form.errors)
 
     context_dict = {'form': form, 'thread': thread}
-    return render(request, 'stack_underflow/add_reply.html', context=context_dict)
+    return render(request, 'stack_underflow/add_reply .html', context=context_dict)
