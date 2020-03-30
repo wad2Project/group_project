@@ -14,7 +14,9 @@
 
 {% block body_block %}
     {% if category %}
-    <h1>{{ category.name }}</h1>
+    <div class="mt-4">
+       <h1>{{ category.name }}</h1>
+    </div>
     {% if threads %}
     <ul>
         {% for thread in threads %}
@@ -38,6 +40,7 @@
                 </div>
             </div>
         </div>
+        <br>
         {% endfor %}
     </ul>
     {% else %}

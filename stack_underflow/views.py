@@ -115,6 +115,12 @@ def user_logout(request):
 
 def categories(request):
     context_dict = {}
+    category_list = Category.objects.order_by('-threads')[:5]
+    threads_list = Thread.objects.order_by('-replies')[:5]
+    context_dict = {}
+    context_dict['categories'] = category_list
+    context_dict['threads'] = threads_list
+
     return render(request, 'stack_underflow/categories.html', context=context_dict)
 
 #<<<<<<< HEAD
