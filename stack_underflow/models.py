@@ -17,6 +17,7 @@ class Category(models.Model):
     name = models.CharField(max_length=128, unique=True)
     threads = models.IntegerField(default=0)
     slug = models.SlugField(unique=True)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)

@@ -21,7 +21,7 @@
       <div class="card-body p-3">
         <div class="row">
           <div class="col-2">
-            <small>{ cat.name }</small>
+            <small> {{ cat.name }} </small>
           </div>
           <div class="col-10">
             <div class="row mb-3">
@@ -29,7 +29,7 @@
                 <strong class="text-muted">USER</strong>
               </div>
               <div class="col-6 text-right">
-                <small class="text-muted">?21/03/20?</small>
+                <small class="text-muted">{{ cat.created_at }}</small>
               </div>
             </div>
             <div>
