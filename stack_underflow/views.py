@@ -115,7 +115,7 @@ def user_logout(request):
 
 def categories(request):
     context_dict = {}
-    category_list = Category.objects.order_by('-threads')[:5]
+    category_list = Category.objects.order_by('-threads')[:]
     threads_list = Thread.objects.order_by('-replies')[:5]
     context_dict = {}
     context_dict['categories'] = category_list
@@ -138,7 +138,7 @@ def add_category(request):
             cat = form.save(commit=False)
             cat.user = request.user
             cat.save()
-            return redirect(reverse('stack_underflow:index'))
+            return redirect(reverse('stack_underflow:categories'))
         else:
             print(form.errors)
 
@@ -165,7 +165,7 @@ def add_thread(request, category_name_slug):
                 t.category = cat
                 t.user = request.user
                 t.save()
-                return redirect(reverse('stack_underflow:index'))
+                return redirect(reverse('stack_underflow:show_category', kwargs={'category_name_slug': category_name_slug}))
         else:
             print(form.errors)
     context_dict = {'form': form, 'category': cat}
@@ -197,7 +197,7 @@ def add_reply(request, thread_question_slug):
                 reply.user = request.user
                 reply.save()
 
-                return redirect(reverse('stack_underflow:index'))
+                return redirect(reverse('stack_underflow:show_thread', kwargs={'thread_question_slug': thread_question_slug}))
 
         else:
             print(form.errors)

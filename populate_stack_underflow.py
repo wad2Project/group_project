@@ -11,6 +11,7 @@ from django.db import IntegrityError
 
 def populate():
     user = User.objects.create_user('username', 'user@gmail.com', 'password1234')
+
     replies = [
         {'reply': 'Example reply 1?', 'user': user},
         {'reply': 'Example reply 2?', 'user': user},
