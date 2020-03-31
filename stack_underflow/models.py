@@ -1,9 +1,8 @@
 
 
-from django.db import models
+from django.db import models, IntegrityError
 from django.template.defaultfilters import slugify
 from django.contrib.auth.models import User
-
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -13,7 +12,7 @@ class UserProfile(models.Model):
         return self.user.username
 
 class Category(models.Model):
-    #user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=128, unique=True)
     threads = models.IntegerField(default=0)
     slug = models.SlugField(unique=True)
@@ -30,7 +29,7 @@ class Category(models.Model):
         return self.name
 
 class Thread(models.Model):
-    #owner = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     question = models.CharField(max_length=128, unique=True)
     replies = models.IntegerField(default=0)
@@ -46,10 +45,10 @@ class Thread(models.Model):
         return self.question
 
 class Reply(models.Model):
-    #user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     thread = models.ForeignKey(Thread, on_delete=models.CASCADE)
     text = models.CharField(max_length=2000)
-
+    created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         verbose_name_plural = 'Replies'
@@ -59,13 +58,6 @@ class Reply(models.Model):
 
     def __str__(self):
         return self.text
-
-
-
-#class Notification(models.Model):
-    #owner = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
-    #reply = models.ForeignKey(Reply, on_delete=models.CASCADE)
-
 
 
 
