@@ -135,7 +135,9 @@ def add_category(request):
         form = CategoryForm(request.POST)
 
         if form.is_valid():
-            cat = form.save(commit=True)
+            cat = form.save(commit=False)
+            cat.user = request.user
+            cat.save()
             return redirect(reverse('stack_underflow:index'))
         else:
             print(form.errors)
@@ -161,6 +163,7 @@ def add_thread(request, category_name_slug):
             if cat:
                 t = form.save(commit=False)
                 t.category = cat
+                t.user = request.user
                 t.save()
                 return redirect(reverse('stack_underflow:index'))
         else:
@@ -191,6 +194,7 @@ def add_reply(request, thread_question_slug):
             if thread:
                 reply = form.save(commit=False)
                 reply.thread = thread
+                reply.user = request.user
                 reply.save()
 
                 return redirect(reverse('stack_underflow:index'))
