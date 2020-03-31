@@ -9,7 +9,9 @@
     {% endblock %}
 </head>
 {% block body_block %}
+   <div class="jumbotron text-left">
     <h1>Add a Category</h1>
+    </div>
     <div>
         <form id="category_form" method="post" action="/stack_underflow/add_category/">
             {% csrf_token %}
@@ -21,7 +23,7 @@
                 {{ field.help_text }}
                 {{ field }}
             {% endfor %}
-            <input type="submit" name="submit" value="Create Category" />
+           <button class="btn btn-outline-dark" type="submit" value="Submit">Create Category</button>
         </form>
     </div>
 {% endblock %}

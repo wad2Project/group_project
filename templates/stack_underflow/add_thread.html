@@ -8,7 +8,9 @@
 </title>
 
 {% block body_block %}
-        <h1>Add a Thread to {{ category.name }}</h1>
+    <div class="jumbotron text-left">
+        <h1>Add thread to {{ category.name }}</h1>
+    </div>
         <div>
             <form role="form" id="page_form" method="post" action="/stack_underflow/category/{{ category.slug }}/add_thread/">
                 {% csrf_token %}
@@ -20,7 +22,7 @@
                     {{ field.help_text }}
                     {{ field }}
                 {% endfor %}
-                <input type="submit" name="submit" value="Add Thread" />
+                <button class="btn btn-outline-dark" type="submit" value="Submit">Add Thread</button>
             </form>
         </div>
 {% endblock %}
