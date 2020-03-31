@@ -13,7 +13,7 @@ from django.contrib.auth import logout
 from django.contrib.auth import authenticate, login, logout
 from datetime import datetime
 
-from stack_underflow.forms import Sign_Up_Form, CategoryForm, UserProfileForm, ReplyForm, ThreadForm
+from stack_underflow.forms import UserProfileForm, Sign_Up_Form, CategoryForm, ReplyForm, ThreadForm
 from stack_underflow.models import Category
 
 
@@ -200,3 +200,18 @@ def add_reply(request, thread_question_slug):
 
     context_dict = {'form': form, 'thread': thread}
     return render(request, 'stack_underflow/add_reply.html', context=context_dict)
+
+@login_required
+def register_profile(request):
+    form = UserProfileForm()
+    if request.method == 'POST':
+        form = UserProfileForm(request.POST, request.FILES)
+        if form.is_valid():
+            user_profile = form.save(commit=False)
+            user_profile.user = request.user
+            user_profile.save()
+            return redirect(reverse('stack_underflow:index'))
+        else:
+            print(form.errors)
+    context_dict = {'form': form}
+    return render(request, 'stack_underflow/profile_registration.html', context_dict)

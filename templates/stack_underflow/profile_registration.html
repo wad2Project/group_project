@@ -1,0 +1,34 @@
+
+{% extends 'stack_underflow/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+    Register - Create Profile
+{% endblock %}
+{% block body_block %}
+<div class="jumbotronp-4">
+    <div class="container">
+        <h1 class="jumbotron-heading">Register Here - Create Profile</h1>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row justify-content-md-center">
+        <div class="col-md-4">
+            <div class="card mb-4" style="background-color: #e0e0e0; border-color: #e0e0e0;">
+                <div class="card-body">
+                    <div class="form-group">
+                        <div class="text-center mb-4">
+                            <form method="post" action="{% url 'stack_underflow:register_profile' %}" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                             <input type="submit" value="Create Profile" />
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

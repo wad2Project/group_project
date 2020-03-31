@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from stack_underflow.models import UserProfile, Category, Thread, Reply
+from stack_underflow.models import Category, Thread, Reply, UserProfile
 
 class Sign_Up_Form(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput())
