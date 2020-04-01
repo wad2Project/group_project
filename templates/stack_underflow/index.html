@@ -13,8 +13,13 @@
 </div>
 <div class="jumbotron jumbotron-fluid">
   <div class="container">
-    <h1 class="display-4">Welcome to StackUnderflow</h1>
-    <p class="lead">The place to find the answers to all your questions.</p>
+      {% if user.is_authenticated %}
+            <h1 class="display-4">Welcome to StackUnderflow,</h1>
+            <h1>{{ user.username }}</h1>
+      {% else %}
+            <h1 class="display-4">Welcome to StackUnderflow</h1>
+      {% endif %}
+            <p class="lead">The place to find the answers to all your questions.</p>
   </div>
 </div>
 <div class="container">

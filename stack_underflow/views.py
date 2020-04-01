@@ -12,7 +12,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from django.contrib.auth import authenticate, login, logout
 from datetime import datetime
-
+from stack_underflow.bing_search import run_query
 from stack_underflow.forms import UserProfileForm, Sign_Up_Form, CategoryForm, ReplyForm, ThreadForm
 from stack_underflow.models import Category
 
@@ -137,6 +137,7 @@ def add_category(request):
         if form.is_valid():
             cat = form.save(commit=False)
             cat.user = request.user
+            cat.threads = cat.threads + 1
             cat.save()
             return redirect(reverse('stack_underflow:categories'))
         else:
@@ -163,6 +164,7 @@ def add_thread(request, category_name_slug):
             if cat:
                 t = form.save(commit=False)
                 t.category = cat
+                t.replies = t.replies + 1
                 t.user = request.user
                 t.save()
                 return redirect(reverse('stack_underflow:show_category', kwargs={'category_name_slug': category_name_slug}))
@@ -219,3 +221,18 @@ def register_profile(request):
             print(form.errors)
     context_dict = {'form': form}
     return render(request, 'stack_underflow/profile_registration.html', context_dict)
+
+
+
+def search(request):
+    result_list = []
+
+    if request.method == 'POST':
+        query = request.POST['query'].strip()
+        if query:
+            results = run_query(query)
+            result_list = results[0]
+            result_cat = results[1]
+            result_thr = results[2]
+
+    return render(request, 'stack_underflow/search.html', {'result_list': result_list, 'result_cat': result_cat, 'result_thr': result_thr})

@@ -4,6 +4,7 @@ app_name = 'stack_underflow'
 
 urlpatterns = [
     path('', views.index, name='index'),
+    path('search/', views.search, name='search'),
     path('login/', views.user_login, name='login'),
     path('register/', views.register, name='register'),
     path('category/<slug:category_name_slug>/', views.show_category, name='show_category'),
