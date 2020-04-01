@@ -28,7 +28,7 @@ SECRET_KEY = 'c6_f1w658pdtqa13j9_3*m5ti5!t)1ql08appumlgm1xp^c20-'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['stackunderflow.pythonanywhere.com']
 
 
 # Application definition
